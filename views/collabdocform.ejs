@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+    <!-- Default form login -->
+<div class="parent" style="text-align: center;height: 100vh;width:100%;position: absolute">
+    <div class="container" style="width: 50%;margin: auto;justify-content: center;position: relative;top: 50%;transform: translate(0%,-55%)">
+    <form class="text-center border border-dark p-5" action="/collabdoc" method="POST">
+    
+            <p class="h4 mb-4">Enter Document Data to collaborate</p>
+        
+            <!-- Email -->
+            <input type="text" name="author" class="form-control mb-4" placeholder="Enter name of Author of Document ..." required>
+        
+            <!-- Password -->
+    
+            <input type="text" name="docname" placeholder="enter doc name ..." class="form-control mb-4" required>
+        
+            <div class="d-flex justify-content-around">
+                <div>
+                    <!-- Remember me -->
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+                <div>
+                    <!-- Forgot password -->
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+        
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Find Doc !</button>
+        
+            <!-- Register -->
+            <p>Already a member
+                <a href="/signin">Sign in</a>
+            </p>
+        
+            <!-- Social login -->
+            <p>or sign in with:</p>
+        
+            <a href="#" class="mx-2" role="button"><img src="images/facebook.svg"></a>
+            <a href="#" class="mx-2" role="button"><img src="images/twitter.svg"></a>
+            <a href="#" class="mx-2" role="button"><img src="images/google.svg"></a>
+        
+        </form>
+        <!-- Default form login -->
+    
+    
+    </div>
+    </div>
+    
+</body>
+</html>

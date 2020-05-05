@@ -1,0 +1,256 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link  rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+      
+     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style> 
+       i.icon {
+     font-size: 2em;
+ }
+     </style>
+ </head>
+ <body >
+     
+  
+       <div class="ui fixed inverted menu">
+         <div class="ui container">
+             <div class="header item"><i class="code icon"></i>Collabify</div>
+             <a href="/inside" class="item">Home</a>
+             
+             <div class="right menu">
+                 <a href="#" class="item">Signed In As:  <%= currentuser %></a>
+         <a href="/logout" class="item">Logout</a>
+ 
+             </div>
+         </div>
+     </div>
+<div  class="container-fluid" style="height: 100%;padding:30px;margin-top:50px ;">
+<div class="row" style="height: 90%;">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+       
+       
+         
+            <div class="panel-heading">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="New file">
+                        <i class="fa fa-file-o"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Save">
+                        <i class="fa fa-save"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Print">
+                        <i class="fa fa-print"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Source code">
+                        <i class="fa fa-code"></i> Source
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Bold">
+                        <i class="fa fa-bold"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Italic">
+                        <i class="fa fa-italic"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Underline">
+                        <i class="fa fa-underline"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Strikethrough">
+                        <i class="fa fa-strikethrough"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Cut">
+                        <i class="fa fa-scissors"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Copy">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Past">
+                        <i class="fa fa-paste"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Undo">
+                        <i class="fa fa-reply"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Redo">
+                        <i class="fa fa-share"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align left">
+                        <i class="fa fa-align-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align center">
+                        <i class="fa fa-align-center"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align right">
+                        <i class="fa fa-align-right"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align justify">
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Numbered list">
+                        <i class="fa fa-list-ol"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Bulleted list">
+                        <i class="fa fa-list-ul"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Link">
+                        <i class="fa fa-link"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Unlink">
+                        <i class="fa fa-unlink"></i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default"  data-toggle="tooltip" title="Picture">
+                        <i class="fa fa-picture-o"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="HTML table">
+                        <i class="fa fa-table"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" title="Font">
+                        <i class="fa fa-font"></i>
+                    </button>
+                </div>
+            </div>
+            
+                <form action="/documents/<%= found.Doc_name%>?_method=PUT" method="POST" style="display: inline">
+                <textarea name="content" id="editor" style="color:black;font-size: 18px;width: 100%;height:90%" placeholder="Type Your Text..."   ><%= found.content %> </textarea>
+                <button type="submit" style="display: inline;margin-right: 10px" class="btn btn-secondary btn-lg">Save</button>
+            </form>
+            
+             
+                <button type="submit" style="display: inline;margin-right: 20px" class="btn btn-primary btn-lg" id="download" >Download</button>
+
+                     <form action="/documents/<%= found.Doc_name%>?_method=DELETE" method="POST" style="display: inline" ><button type="submit" class="btn btn-danger btn-lg">Delete</button></form>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        
+    </div>
+   
+    <div class="col-lg-2 col-md-2 col-sm-12   ">
+
+
+            <!-- <form action="" style="right: 0;top:0;position: absolute;" id="userform">
+            <input type="text" name="username"  placeholder="username" id="userbox">
+            <button >ADD</button>
+                    </form> -->
+
+                     <p style="background-color: burlywood;width: 100%;margin: 0">Collaborators</p>
+         <div class="collaborators" style="background-color: antiquewhite;height: 40%;width: 100%;overflow-y: auto;scroll-behavior: auto;margin-bottom: 50px;" id="allusers">
+         </div>
+ 
+          <div id="messages" style="background-color: antiquewhite;height:50%;width: 100%;bottom: 0; overflow-y: auto">
+             <p style="background-color: burlywood">Chat</p>
+         </div>
+      
+         <form action="" style="bottom: 0;position: absolute;width: 100%;" id="chatform">
+            <input type="text" name="message" id="chatbox" style="width:75%">
+            <button  style="width: 15%">Chat</button>
+        </form>
+     </div>
+</div>
+
+
+
+</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+ 
+<script>
+ var socket=io();
+var x=prompt("enter your name");
+    console.log(x);
+
+// realtime document code***********************************
+const editor=document.getElementById('editor');
+editor.addEventListener("keyup",function(evt) {
+    const text=editor.value;
+    socket.emit("document",text);
+})
+socket.on('document', function(data) {
+    editor.value = data;
+})
+
+//*************************************************************chat form
+$('#chatform').submit(function(e) {
+    e.preventDefault();
+    socket.emit('chat msg',$('#chatbox').val());
+    $('input').val('');
+})
+socket.on('send msg',function(data) {
+    $('#messages').append("<p><strong>"+data.user+"</strong>"+":"+data.msg+"</p><hr>");
+})
+
+// ******************************************************** all collaborators
+
+socket.emit('new user',x);
+// $('#userform').submit(function(e2) {
+//     e2.preventDefault();
+//     socket.emit('new user',$('#userbox').val());
+//     $('#userbox').val('');
+
+socket.on('get users',function(data) {
+    var html='';
+  for(var i=0;i<data.length;i++) {
+      // $('#allusers').append("<p>"+data[i]+"</p>");
+       html+="<p>"+data[i]+"</p><hr>";
+
+  }
+  $('#allusers').html(html);
+})
+
+
+
+// handling download
+
+function download(file, text) { 
+                    //creating an invisible element 
+                    var element = document.createElement('a'); 
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8, ' + encodeURIComponent(text)); 
+                    element.setAttribute('download', file); 
+                    //the above code is equivalent to 
+                    // <a href="path of file" download="file name"> 
+                    document.body.appendChild(element);
+                    //onClick property 
+                    element.click(); 
+                    document.body.removeChild(element); 
+                } 
+
+                document.getElementById("download").addEventListener("click", function() { 
+                    var text = document.getElementById("editor").textContent; 
+                    var filename = prompt("Enter file Name");
+                    download(filename, text); 
+
+                }, false); 
+
+
+// documnet styling section
+
+
+</script>
+
+
+
+
+</body>
+</html>

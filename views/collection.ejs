@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+     <p style="height: 20vh;">
+    </p>
+
+
+ <div style="margin: auto;width: 80%;height: 50vh;;">
+     <div class="list-group overflow-auto" style="height:50vh;width:50%;border: 1px solid black;display:inline-block;">
+      <h2 style="display: inline-block;padding:10px">Created :</h2>
+    <%  found1.forEach((found)=>{  %>
+        <a href="/documents/<%= found.Doc_name %>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= found.Doc_name %></h5>
+              <small class="text-muted"><%= found.created_at %></small>
+            </div>
+            <p class="mb-1"><%= found.content %></p>
+          </a>
+        
+    <% })    %>
+</div>
+
+
+<div class="list-group overflow-auto" style="height:50vh;width:49%;border: 1px solid black;display: inline-block;">
+  <h2 style="display: inline-block;padding:10px">Collaborated In :</h2>
+  
+
+  <% if(found2.length>0) { %>
+  <%  found2.forEach((found2)=>{  %>
+      <a href="/documents/<%= found2.Doc_name %>" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= found2.Doc_name %></h5>
+            <small class="text-muted"><%= found2.added_at %></small>
+          </div>
+          <p class="mb-1"><%= found2.id %></p>
+        </a>
+      
+  <% })    %>
+  <% } %>
+</div>
+</div>
+    
+<%- include('partials/header') %>
