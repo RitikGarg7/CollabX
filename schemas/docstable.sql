@@ -7,3 +7,4 @@ create table newdoc( id INT NOT NULL AUTO_INCREMENT,
                       );
 
  
+--  ALTER TABLE newdoc ADD FOREIGN KEY(Doc_name) REFERENCES newuser(Doc_name);

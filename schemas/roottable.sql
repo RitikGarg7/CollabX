@@ -8,4 +8,4 @@ CREATE TABLE newuser( id MEDIUMINT NOT NULL AUTO_INCREMENT,
 INSERT INTO newuser(Username,password) VALUES('ritik7garg@gmail.com','noneofbusiness');
 INSERT INTO newuser(Username,password) VALUES('kashgarg@gmail.com','wpa21234');
 
-
+ALTER TABLE newuser DROP PRIMARY KEY;

@@ -14,3 +14,5 @@ RENAME COLUMN created_at TO added_at;
 
 ALTER TABLE newcollab
 CHANGE COLUMN created_at added_at TIMESTAMP DEFAULT now();
+
+ALTER TABLE newcollab ADD FOREIGN KEY (Doc_name) references newdoc(Doc_name);
