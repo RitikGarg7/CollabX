@@ -18,7 +18,103 @@
  }
  .fa{
      color: azure;
- }
+ } 
+*{
+padding: 0px;
+margin: 0px;
+font-family: 'Fira Code';
+}
+body{
+    width: 100%;
+height: 100vh;
+background: #95a5a6;
+}
+.chat-box{
+position: absolute;
+right: 20px;
+bottom: 0px;
+background: white;
+width: 280px;
+border-radius: 5px 5px 0px 0px;
+}
+.collab-box{
+position: absolute;
+right: 20px; 
+background: white;
+width: 280px;
+border-radius: 5px 5px 0px 0px;
+}
+.chat-head{
+width: inherit;
+height: 45px;
+background: #2c3e50;
+border-radius: 5px 5px 0px 0px;
+}
+.chat-head h2{
+color: white;
+padding: 6px;
+display: inline-block;
+}
+.chat-head img{
+cursor: pointer;
+float: right;
+width: 25px;
+margin: 10px;
+}
+.chat-body{
+height: 300px;
+width: inherit;
+overflow: scroll;
+scroll-behavior: auto;
+margin-bottom: 45px;
+}
+.collab-body{
+    height:300px;
+    width: inherit;
+overflow: scroll;
+scroll-behavior: smooth;
+}
+.chat-text{
+position: fixed;
+bottom: 0px;
+height: 40px;
+width: inherit;
+}
+.chat-text textarea{
+width: inherit;
+height: inherit; 
+box-sizing: border-box;
+border: 1px solid #bdc3c7;
+padding: 10px;
+resize: none;
+}
+.chat-text textarea:active, .chat-text textarea:focus, .chat-text textarea:hover{
+border-color: royalblue;
+}
+.msg-send{
+background: #2ecc71;
+}
+.msg-receive{
+background: #3498db;
+}
+.msg-send, .msg-receive{
+width: 250px;
+height: 35px;
+padding: 5px 5px 5px 10px;
+margin: 10px auto;
+border-radius: 3px;
+line-height: 30px;
+position: relative;
+color: white;
+}
+ 
+ 
+.msg-receive:hover, .msg-send:hover{
+opacity: .9;
+}
+
+
+Resources
      </style>
  </head>
  <body >
@@ -30,7 +126,7 @@
              <a href="/inside" class="item">Home</a>
              
              <div class="right menu">
-                 <a href="#" class="item">Signed In As:  <%= currentuser %></a>
+                 <a href="#" class="item" id="getter">Signed In As:  <%= currentuser %></a>
          <a href="/logout" class="item">Logout</a>
  
              </div>
@@ -39,7 +135,7 @@
 <div  class="container-fluid" style="height: 100%;padding:30px;margin-top:50px ;">
 <div class="row" style="height: 90%;">
     <div class="col-lg-10 col-md-10 col-sm-12">
-        <div class="panel-heading" style="background-color: #428bca;">
+        <div class="panel-heading" style="background-color: #428bca; width: 95%;">
             <div class="btn-group">
                 <button type="button" class="btn btn-default" data-toggle="tooltip" title="New file">
                     <i class="fa fa-file-o" style="color: azure;"></i>
@@ -130,38 +226,45 @@
             </div>
         </div>
        <form action="/documents/<%= found.Doc_name%>?_method=PUT" method="POST" style="display: inline">
-        <textarea name="content" id="editor" style="color:black;font-size: 18px;width: 100%;height:90%" placeholder="Type Your Text..."   ><%= found.content %> </textarea>
+        <textarea name="content" id="editor" style="color:black;font-size: 18px;width: 95%;height:90%" placeholder="Type Your Text..."   ><%= found.content %> </textarea>
         <br>
 
         <button type="submit" style="display: inline;margin-right: 10px" class="btn btn-secondary btn-lg">Save</button>
        </form>
        <form action="/documents/<%= found.Doc_name%>?_method=DELETE" method="POST" style="display: inline" ><button type="submit" class="btn btn-danger btn-lg">Delete</button></form>
        <button type="submit" style="display: inline;margin-right: 20px" class="btn btn-primary btn-lg" id="download" >Download</button>
-    </div>
-   
-    <div class="col-lg-2 col-md-2 col-sm-12   ">
-
-
-            <!-- <form action="" style="right: 0;top:0;position: absolute;" id="userform">
-            <input type="text" name="username"  placeholder="username" id="userbox">
-            <button >ADD</button>
-                    </form> -->
-
-                     <p style="background-color:#428bca;width: 100%;margin: 0;height: 30px; font-size: 20px;">Collaborators</p>
-         <div class="collaborators" style="background-color: lightblue;height: 40%;width: 100%;overflow-y: auto;scroll-behavior: auto;margin-bottom: 50px;font-size: 15px;" id="allusers">
-         </div>
- 
-          <div id="messages" style="background-color: lightblue;height:50%;width: 100%;bottom: 0; overflow-y: auto">
-             <p style="background-color: #428bca;height: 30px;font-size: 20px;">Chat</p>
-         </div>
+    </div> 
       
-         <form action="" style="bottom: 0;position: absolute;width: 100%;margin-top: 10px;" id="chatform">
-            <input type="text" name="message" id="chatbox" style="width:75%">
-            <button  style="width: 15%">Chat</button>
-        </form>
-     </div>
-</div>
+         <div class="wrapper">
+            <div class="collab-box">
+            <div class="chat-head">
+            <h2>Collaborators</h2>  
+            </div>
+            <div class="collab-body">
+            <div class="msg-insert2" id="allusers"> 
+            </div> 
+            </div>
+            </div>
+        </div>
+         
+            <div class="wrapper">
+            <div class="chat-box">
+            <div class="chat-head">
+            <h2>Chat Box</h2>
+            <img src="https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png" title="Expand Arrow" width="16">
+            </div>
+            <div class="chat-body">
+            <div class="msg-insert"> 
+            </div>
+            <div class="chat-text">
+            <textarea placeholder="Send" id="chatfield"></textarea>
+            </div>
+            </div>
+            </div>
+            </div>
+      
 
+       
 
 
 </div>
@@ -175,7 +278,10 @@
 var x=prompt("enter your name");
     console.log(x);
 
-// realtime document code***********************************
+/* // realtime document code*********************************** */
+var getter=document.getElementById('getter');
+console.log("***********************************");
+console.log(getter.textContent.substring(15));
 const editor=document.getElementById('editor');
 editor.addEventListener("keyup",function(evt) {
     const text=editor.value;
@@ -185,37 +291,50 @@ socket.on('document', function(data) {
     editor.value = data;
 })
 
-//*************************************************************chat form
-$('#chatform').submit(function(e) {
+/* $('#chatform').submit(function(e) {
     e.preventDefault();
     socket.emit('chat msg',$('#chatbox').val());
     $('input').val('');
 })
 socket.on('send msg',function(data) {
     $('#messages').append("<p><strong>"+data.user+"</strong>"+":"+data.msg+"</p><hr>");
+}) */
+
+$('#chatfield').keypress(function(event) {
+var $this = $(this);
+
+if(event.keyCode == 13){
+var msg = $this.val();
+socket.emit('chat msg',msg);
+$this.val('');
+}
+});
+
+socket.on('send msg',function(data) { 
+    /* //if(data.user===currentuser) console.log("Yes"); */
+     $('.msg-insert').append("<div class='msg-send'><strong>"+data.user+"</strong>"+":"+data.msg+"</div>");
 })
-
-// ******************************************************** all collaborators
-
+ 
 socket.emit('new user',x);
-// $('#userform').submit(function(e2) {
+/* // $('#userform').submit(function(e2) {
 //     e2.preventDefault();
 //     socket.emit('new user',$('#userbox').val());
-//     $('#userbox').val('');
+//     $('#userbox').val(''); */
 
 socket.on('get users',function(data) {
     var html='';
   for(var i=0;i<data.length;i++) {
-      // $('#allusers').append("<p>"+data[i]+"</p>");
-       html+="<p>"+data[i]+"</p><hr>";
+      /*  $('#allusers').append("<p>"+data[i]+"</p>"); */
+       html+=`<div class="msg-receive">`+(i+1)+" "+data[i]+`</div>`;
 
   }
+  console.log(html);
   $('#allusers').html(html);
 })
 
 
 
-// handling download
+/* // handling download */
 
 function download(file, text) { 
                     //creating an invisible element 
@@ -236,10 +355,26 @@ function download(file, text) {
                     download(filename, text); 
 
                 }, false); 
+ 
+$(function(){
+var arrow = $('.chat-head img');
+var textarea = $('.chat-text textarea');
+
+arrow.on('click', function(){
+var src = arrow.attr('src');
+
+$('.chat-body').slideToggle('fast');
+if(src == 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png'){
+arrow.attr('src', 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_up-16.png');
+}
+else{
+arrow.attr('src', 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png');
+}
+});
 
 
-// documnet styling section
 
+});
 
 </script>
 
