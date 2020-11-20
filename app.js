@@ -13,20 +13,21 @@ var mysql = require('mysql');
 
  // app config
 var users=[];
-var connections=[];
-//  var connection = mysql.createConnection({
+var connections=[]; 
+// var options={
 //     host     : 'localhost',
 //     user     : 'root',
 //     database : 'project',
 //     password:'etuoryuojl',
+//     connectionLimit:3,
 //     port: 3306,
-//   });
+// }
 
 var options={
-    host     : 'localhost',
-    user     : 'root',
-    database : 'project',
-    password:'etuoryuojl',
+    host     : 'sql12.freemysqlhosting.net',
+    user     : 'sql12377808',
+    database : 'sql12377808',
+    password:'BwWI3hL7yp',
     connectionLimit:3,
     port: 3306,
 }
