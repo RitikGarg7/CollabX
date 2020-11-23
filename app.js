@@ -1,7 +1,6 @@
 var express=require('express');
 var app=express();
-var faker=require('faker');
-var mysql = require('mysql');
+ var mysql = require('mysql');
  var bodyParser=require('body-parser');
  var session = require('express-session');
  var http=require('http').createServer(app);
@@ -13,20 +12,21 @@ var mysql = require('mysql');
 
  // app config
 var users=[];
-var connections=[];
-//  var connection = mysql.createConnection({
+var connections=[]; 
+// var options={
 //     host     : 'localhost',
 //     user     : 'root',
 //     database : 'project',
 //     password:'etuoryuojl',
+//     connectionLimit:3,
 //     port: 3306,
-//   });
+// }
 
 var options={
-    host     : 'localhost',
-    user     : 'root',
-    database : 'project',
-    password:'etuoryuojl',
+    host     : 'sql12.freemysqlhosting.net',
+    user     : 'sql12377808',
+    database : 'sql12377808',
+    password:'BwWI3hL7yp',
     connectionLimit:3,
     port: 3306,
 }
@@ -134,7 +134,8 @@ app.get("/createdoc",function(req,res) {
 app.post("/createdoc",function(req,res) {
     var doc={
         Doc_name:req.body.docname,
-        created_by:req.session.username
+        created_by:req.session.username,
+        AdminPassword:req.body.docpass
     }
     var l='INSERT INTO newdoc SET ?'; 
     connection.query(l,doc,function(error,result) {
@@ -152,7 +153,10 @@ app.get("/finddoc",function(req,res) {
         var q2='SELECT * from newcollab WHERE collaborator_name=?'
     
         connection.query(q,currentuser,function(error,results,fields) {
-            if(error) console.log(error);
+            if(error) {
+                console.log(error);
+                res.render("error");
+            }
             connection.query(q2,currentuser,function(error2,results2,fields2) {
                 if(error) console.log(error2);
                 if(results2.length>0) {
@@ -180,28 +184,42 @@ app.get("/collabdoc",function(req,res) {
 app.post("/collabdoc",function(req,res) {
     var doc={
         Doc_name:req.body.docname,
-        collaborator_name:req.session.username
+        collaborator_name:req.session.username,
+        AdminPassword:req.body.passwordEntry
     };
+    var doc2={
+        Doc_name:req.body.docname,
+        collaborator_name:req.session.username,
+    }
     console.log(doc);
      var q1='SELECT * FROM newdoc WHERE Doc_name= ?';
-
+    var q2='SELECT * FROM newdoc WHERE AdminPassword= ?';
     connection.query(q1,doc.Doc_name,function(error,results,fields) {
-        if(results.length>0) {
-            console.log("results "+results);
-            var l='insert into newcollab set ?';
-            connection.query(l,doc,function(error,results2,fields2) {
-                console.log("results2 "+results2);
-                if(error) {
-                    res.render("error");
-                }else {
-                    res.render("success2",{docname:doc.Doc_name,collaborator:doc.collaborator_name});
-                }
-                
-            })
-        }else{
+        if(error) {
             console.log(error);
             res.render("error");
+        }else {
+            connection.query(q2,doc.AdminPassword,function(error,results,fields) {
+                if(results.length>0) {
+                    console.log("results "+results);
+                    var l='insert into newcollab set ?';
+                    connection.query(l,doc2,function(error,results2,fields2) {
+                        console.log("results2 "+results2);
+                        if(error) {
+                            res.render("error");
+                        }else {
+                            res.render("success2",{docname:doc.Doc_name,collaborator:doc.collaborator_name});
+                        }
+                        
+                    })
+                }else{
+                    console.log(error);
+                    res.render("error");
+                }
+            });
+           
         }
+        
      })
 })
 
