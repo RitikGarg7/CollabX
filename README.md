@@ -2,7 +2,7 @@
 
 
 <img src="signin.png" height="700" width="1100"></img> 
-<br>
+<hr>
 <img src="field.png" height="700" width="1100"></img> 
 <br>
 <img src="dashboard.png" height="700" width="1100"></img> 
